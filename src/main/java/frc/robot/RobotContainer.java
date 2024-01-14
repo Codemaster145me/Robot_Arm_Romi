@@ -68,12 +68,20 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
 
-   int ang = 0;
+   int ang = 180;
+       GenericEntry entry = null;
+    
+
 
    public void Open(){
      if (ang >= 10){
        ang = ang - 2;
      }
+     //Shuffleboard.getTab("Arm").add("Angle", ang); simple code to add a number to the shuffleboard
+     // Shuffleboard.update();
+
+    this.entry.setDouble(ang);
+     // entry.setDouble(ang);
    }
  
    public void Close(){
@@ -114,15 +122,14 @@ public class RobotContainer {
 
     //arm
     //swevo 1
-
+        Shuffleboard.getTab("Arm").add("Angle", ang);
+    ShuffleboardTab tab = Shuffleboard.getTab("Arm");
+    GenericEntry entry = tab.add("Arm", ang).getEntry();
+    this.entry = entry; 
     JoystickButton joystickAButton = new JoystickButton(m_controller, m_arm.A);
       joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> Open())));
       joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> m_arm.setAngle(ang), m_arm)));
-      joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> System.out.println(ang))));
-
-    //ShuffleboardTab tab = Shuffleboard.getTab("Arm");
-    //GenericEntry entry = tab.add("Arm", ang).getEntry();
-    //entry.setDouble(ang);
+      // joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> System.out.println(ang))));
 
 
     JoystickButton joystickXButton = new JoystickButton(m_controller, m_arm.X);

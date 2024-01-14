@@ -10,6 +10,9 @@
     },
     "transitory": {
       "Shuffleboard": {
+        ".recording": {
+          "open": true
+        },
         "Arm": {
           "open": true
         },
