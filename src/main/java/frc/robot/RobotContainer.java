@@ -69,8 +69,9 @@ public class RobotContainer {
    */
 
   int ang = 180;
+  double ang2 = 180;
   GenericEntry entry = null;
-  //GenericEntry entry2 = null;
+  GenericEntry entry2 = null;
   
 
 
@@ -92,10 +93,8 @@ public class RobotContainer {
     }
   }
 
-  double ang2 = 180;
-
   public void ArmUp(){
-    if(ang2 >= 30){
+    if(ang2 >= 8){
       ang2 = ang2 - 5;
     }
     //close state is 180, when do open, we decrease the number  
@@ -103,7 +102,7 @@ public class RobotContainer {
   }
 
   public void ArmDown(){
-    if(ang2 <= 180){
+    if(ang2 <= 100){
       ang2 = ang2 + 5;
     }
     //close state is 180, when do open, we decrease the number  
@@ -123,8 +122,8 @@ public class RobotContainer {
 
     //grabber
     //swevo 1
-    ShuffleboardTab tab = Shuffleboard.getTab("graber1");
-    GenericEntry entry = tab.add("graber1", ang).getEntry();
+    ShuffleboardTab tab = Shuffleboard.getTab("arm");
+    GenericEntry entry = tab.add("arm", ang).getEntry();
     this.entry = entry; 
     JoystickButton joystickAButton = new JoystickButton(m_controller, m_arm.A);
       joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> Open())));
@@ -138,9 +137,9 @@ public class RobotContainer {
 
     //grab
     //swevo 2
-    //ShuffleboardTab tab2 = Shuffleboard.getTab("arm");
-    //GenericEntry entry2 = tab.add("arm", ang).getEntry();
-    //this.entry = entry2;
+    ShuffleboardTab tab2 = Shuffleboard.getTab("graber");
+    GenericEntry entry2 = tab2.add("graber", ang).getEntry();
+    this.entry = entry2;
     JoystickButton joystickYButton = new JoystickButton(m_controller, m_arm.B);
       joystickYButton.whileTrue(new RepeatCommand(new InstantCommand(() -> ArmUp())));
       joystickYButton.whileTrue(new RepeatCommand(new InstantCommand(() -> m_arm.setAngle2(ang2), m_arm)));

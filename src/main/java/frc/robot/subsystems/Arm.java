@@ -15,7 +15,7 @@ public class Arm extends SubsystemBase{
 
     public Arm(){
         RomiServo = new Servo(4);
-        armservo = new Servo(5);
+        armservo = new Servo(3);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Arm extends SubsystemBase{
         RomiServo.setAngle(angleDeg);
     }
 
-    public void setAngle2(double angleDeg){
-        armservo.setAngle(angleDeg);
+    public void setAngle2(double angleDeg2){
+        armservo.setAngle(angleDeg2);
     }
 }
