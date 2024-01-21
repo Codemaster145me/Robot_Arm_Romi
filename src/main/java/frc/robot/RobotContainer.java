@@ -68,46 +68,47 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
 
-   int ang = 180;
-       GenericEntry entry = null;
-    
+  int ang = 180;
+  GenericEntry entry = null;
+  //GenericEntry entry2 = null;
+  
 
 
-   public void Open(){
-     if (ang >= 10){
-       ang = ang - 2;
-     }
-     //Shuffleboard.getTab("Arm").add("Angle", ang); simple code to add a number to the shuffleboard
-     // Shuffleboard.update();
+  public void Open(){
+    if (ang >= 10){
+      ang = ang - 2;
+    }
+    //Shuffleboard.getTab("Arm").add("Angle", ang); simple code to add a number to the shuffleboard
+    // Shuffleboard.update();
 
-    this.entry.setDouble(ang);
-     // entry.setDouble(ang);
-   }
- 
-   public void Close(){
-     if (ang <= 180){
-       ang = ang + 2;
-       //System.out.println(ang + "\n");
-     }
-   }
+  this.entry.setDouble(ang);
+    // entry.setDouble(ang);
+  }
 
-   double ang2 = 180;
- 
-   public void ArmUp(){
-     if(ang2 >= 30){
-       ang2 = ang2 - 5;
-     }
-     //close state is 180, when do open, we decrease the number  
-     //open state is 30, when do close, we increase the number 
-   }
- 
-   public void ArmDown(){
-     if(ang2 <= 180){
-       ang2 = ang2 + 5;
-     }
-     //close state is 180, when do open, we decrease the number  
-     //open state is 30, when do close, we increase the number 
-   }
+  public void Close(){
+    if (ang <= 180){
+      ang = ang + 2;
+      //System.out.println(ang + "\n");
+    }
+  }
+
+  double ang2 = 180;
+
+  public void ArmUp(){
+    if(ang2 >= 30){
+      ang2 = ang2 - 5;
+    }
+    //close state is 180, when do open, we decrease the number  
+    //open state is 30, when do close, we increase the number 
+  }
+
+  public void ArmDown(){
+    if(ang2 <= 180){
+      ang2 = ang2 + 5;
+    }
+    //close state is 180, when do open, we decrease the number  
+    //open state is 30, when do close, we increase the number 
+  }
 
   private void configureButtonBindings() {
     // Default command is arcade drive. This will run unless another command
@@ -137,7 +138,9 @@ public class RobotContainer {
 
     //grab
     //swevo 2
-    
+    //ShuffleboardTab tab2 = Shuffleboard.getTab("arm");
+    //GenericEntry entry2 = tab.add("arm", ang).getEntry();
+    //this.entry = entry2;
     JoystickButton joystickYButton = new JoystickButton(m_controller, m_arm.B);
       joystickYButton.whileTrue(new RepeatCommand(new InstantCommand(() -> ArmUp())));
       joystickYButton.whileTrue(new RepeatCommand(new InstantCommand(() -> m_arm.setAngle2(ang2), m_arm)));
