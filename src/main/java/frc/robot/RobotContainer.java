@@ -87,7 +87,7 @@ public class RobotContainer {
    public void Close(){
      if (ang <= 180){
        ang = ang + 2;
-       System.out.println(ang + "\n");
+       //System.out.println(ang + "\n");
      }
    }
 
@@ -120,11 +120,10 @@ public class RobotContainer {
         .onTrue(new PrintCommand("Button A Pressed"))
         .onFalse(new PrintCommand("Button A Released"));
 
-    //arm
+    //grabber
     //swevo 1
-        Shuffleboard.getTab("Arm").add("Angle", ang);
-    ShuffleboardTab tab = Shuffleboard.getTab("Arm");
-    GenericEntry entry = tab.add("Arm", ang).getEntry();
+    ShuffleboardTab tab = Shuffleboard.getTab("graber1");
+    GenericEntry entry = tab.add("graber1", ang).getEntry();
     this.entry = entry; 
     JoystickButton joystickAButton = new JoystickButton(m_controller, m_arm.A);
       joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> Open())));
@@ -138,6 +137,7 @@ public class RobotContainer {
 
     //grab
     //swevo 2
+    
     JoystickButton joystickYButton = new JoystickButton(m_controller, m_arm.B);
       joystickYButton.whileTrue(new RepeatCommand(new InstantCommand(() -> ArmUp())));
       joystickYButton.whileTrue(new RepeatCommand(new InstantCommand(() -> m_arm.setAngle2(ang2), m_arm)));
