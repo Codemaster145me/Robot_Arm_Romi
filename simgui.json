@@ -1,4 +1,13 @@
 {
+  "HALProvider": {
+    "Other Devices": {
+      "RomiGyro": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
@@ -16,11 +25,23 @@
       "open": false
     },
     "transitory": {
+      "LiveWindow": {
+        ".status": {
+          "open": true
+        },
+        "open": true
+      },
       "Shuffleboard": {
         ".recording": {
           "open": true
         },
         "Arm": {
+          "open": true
+        },
+        "Graber": {
+          "open": true
+        },
+        "Tilt": {
           "open": true
         },
         "graber1": {

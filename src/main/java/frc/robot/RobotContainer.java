@@ -68,19 +68,18 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
 
-  int ang = 180;
+  double ang = 180;
   double ang2 = 180;
+  double ang3 = 100;
   GenericEntry entry = null;
   GenericEntry entry2 = null;
-  
+  GenericEntry entry3 = null;
 
 
   public void Open(){
     if (ang >= 10){
       ang = ang - 2;
     }
-    //Shuffleboard.getTab("Arm").add("Angle", ang); simple code to add a number to the shuffleboard
-    // Shuffleboard.update();
 
   this.entry.setDouble(ang);
     // entry.setDouble(ang);
@@ -89,7 +88,6 @@ public class RobotContainer {
   public void Close(){
     if (ang <= 180){
       ang = ang + 2;
-      //System.out.println(ang + "\n");
     }
   }
 
@@ -97,16 +95,24 @@ public class RobotContainer {
     if(ang2 >= 8){
       ang2 = ang2 - 5;
     }
-    //close state is 180, when do open, we decrease the number  
-    //open state is 30, when do close, we increase the number 
   }
 
   public void ArmDown(){
     if(ang2 <= 100){
       ang2 = ang2 + 5;
     }
-    //close state is 180, when do open, we decrease the number  
-    //open state is 30, when do close, we increase the number 
+  }
+
+  public void TilitDown(){
+    if(ang3 >= 8){
+      ang3 = ang3 - 2;
+    }
+  }
+
+  public void TilitUp(){
+    if(ang3 <= 180){
+      ang3 = ang3 + 2;
+    }
   }
 
   private void configureButtonBindings() {
@@ -122,8 +128,8 @@ public class RobotContainer {
 
     //grabber
     //swevo 1
-    ShuffleboardTab tab = Shuffleboard.getTab("arm");
-    GenericEntry entry = tab.add("arm", ang).getEntry();
+    ShuffleboardTab tab = Shuffleboard.getTab("Arm");
+    GenericEntry entry = tab.add("Arm", ang).getEntry();
     this.entry = entry; 
     JoystickButton joystickAButton = new JoystickButton(m_controller, m_arm.A);
       joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> Open())));
@@ -137,8 +143,8 @@ public class RobotContainer {
 
     //grab
     //swevo 2
-    ShuffleboardTab tab2 = Shuffleboard.getTab("graber");
-    GenericEntry entry2 = tab2.add("graber", ang).getEntry();
+    ShuffleboardTab tab2 = Shuffleboard.getTab("Graber");
+    GenericEntry entry2 = tab2.add("Graber", ang2).getEntry();
     this.entry = entry2;
     JoystickButton joystickYButton = new JoystickButton(m_controller, m_arm.B);
       joystickYButton.whileTrue(new RepeatCommand(new InstantCommand(() -> ArmUp())));
@@ -147,6 +153,19 @@ public class RobotContainer {
     JoystickButton joystickBButton = new JoystickButton(m_controller, m_arm.Y);
       joystickBButton.whileTrue(new RepeatCommand(new InstantCommand(() -> ArmDown())));
       joystickBButton.whileTrue(new RepeatCommand(new InstantCommand(() -> m_arm.setAngle2(ang2), m_arm)));
+
+    //tilit
+    //swevo 3
+    ShuffleboardTab tab3 = Shuffleboard.getTab("Tilt");
+    GenericEntry entry3 = tab3.add("Tilt", ang3).getEntry();
+    this.entry = entry3;
+    JoystickButton joystickTriggerLButton = new JoystickButton(m_controller, m_arm.TriggerL);
+      joystickTriggerLButton.whileTrue(new RepeatCommand(new InstantCommand(() -> TilitDown())));
+      joystickTriggerLButton.whileTrue(new RepeatCommand(new InstantCommand(() -> m_arm.setAngle3(ang3), m_arm)));
+
+    JoystickButton joystickTriggerRButton = new JoystickButton(m_controller, m_arm.TriggerR);
+      joystickTriggerRButton.whileTrue(new RepeatCommand(new InstantCommand(() -> TilitUp())));
+      joystickTriggerRButton.whileTrue(new RepeatCommand(new InstantCommand(() -> m_arm.setAngle3(ang3), m_arm)));
   }
 
   /**
@@ -154,6 +173,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
+
   public Command getAutonomousCommand() {
     return m_chooser.getSelected();
   }
