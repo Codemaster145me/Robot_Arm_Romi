@@ -2,23 +2,17 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
-public class Arm extends SubsystemBase{
+public class ArmSubsystem extends SubsystemBase{
     private final Servo RomiServo;
     private final Servo armservo;
     private final Servo TilitServo;
 
-    public int A = 1;
-    public int B = 2;
-    public int X = 3;
-    public int Y = 4;
-    public int TriggerL = 5;
-    public int TriggerR = 6;
-
-    public Arm(){
-        TilitServo = new Servo(2);
-        armservo = new Servo(3);
-        RomiServo = new Servo(4);
+    public ArmSubsystem(){
+        TilitServo = new Servo(Constants.TiltPort);
+        armservo = new Servo(Constants.ArmPort);
+        RomiServo = new Servo(Constants.GrabPort);
     }
 
     @Override
