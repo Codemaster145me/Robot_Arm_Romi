@@ -6,6 +6,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
+// import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.ArmSubsystem;
 
 public class ArmDown extends Command {
   /** Creates a new ArmDown. */
@@ -22,6 +24,7 @@ public class ArmDown extends Command {
   public void execute() {
     if(Constants.ArmAngle >= Constants.MaxArmDownAngle){
       Constants.ArmAngle = Constants.ArmAngle - Constants.ArmSpeed;
+      ArmSubsystem.setAngle(Constants.ArmAngle);
     }
     System.out.println("Arm Angle from arm down: " + Constants.ArmAngle);
   }

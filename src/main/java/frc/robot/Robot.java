@@ -144,13 +144,13 @@ public class Robot extends TimedRobot {
     GenericEntry entry = tab.add("Arm", ang).getEntry();
     this.entry = entry; */
 
-    JoystickButton joystickAButton = new JoystickButton(RobotContainer.m_controller, Constants.A);
+      JoystickButton joystickAButton = new JoystickButton(RobotContainer.m_controller, Constants.A);
       joystickAButton.whileTrue(armup); // ??
       //joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> 
       //Shuffleboard.getTab("Arm").add("Sendable Title", ang))));
       // joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> System.out.println(ang))));
 
-    JoystickButton joystickXButton = new JoystickButton(RobotContainer.m_controller, Constants.X);
+      JoystickButton joystickXButton = new JoystickButton(RobotContainer.m_controller, Constants.X);
       joystickXButton.whileTrue(armdown);
       //joystickXButton.whileTrue(new RepeatCommand(new InstantCommand(() -> m_arm.setAngle(ang), m_arm)));
 
