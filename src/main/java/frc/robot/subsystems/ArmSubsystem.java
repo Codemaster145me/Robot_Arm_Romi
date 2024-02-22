@@ -5,13 +5,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ArmSubsystem extends SubsystemBase{
-    private static Servo RomiServo;
-    private Servo Armservo;
-    private Servo TilitServo;
+    private final Servo RomiServo;
+    private final Servo armservo;
+    private final Servo TilitServo;
 
     public ArmSubsystem(){
         TilitServo = new Servo(Constants.TiltPort);
-        Armservo = new Servo(Constants.ArmPort);
+        armservo = new Servo(Constants.ArmPort);
         RomiServo = new Servo(Constants.GrabPort);
     }
 
@@ -26,12 +26,12 @@ public class ArmSubsystem extends SubsystemBase{
      * @param angleDeg Desired arm angle in degrees
      */
      
-    public static void setAngle(double angleDeg){
+    public void setAngle(double angleDeg){
         RomiServo.setAngle(angleDeg);
     }
 
     public void setAngle2(double angleDeg2){
-        Armservo.setAngle(angleDeg2);
+        armservo.setAngle(angleDeg2);
     }
 
     public void setAngle3(double angleDeg3){
