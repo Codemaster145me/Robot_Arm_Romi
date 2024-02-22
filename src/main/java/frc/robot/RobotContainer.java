@@ -57,6 +57,51 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
 
+<<<<<<< HEAD
+=======
+  int ang = 180;
+  GenericEntry entry = null;
+  //GenericEntry entry2 = null;
+  
+
+
+  public void Open(){
+    if (ang >= 10){
+      ang = ang - 2;
+    }
+    //Shuffleboard.getTab("Arm").add("Angle", ang); simple code to add a number to the shuffleboard
+    // Shuffleboard.update();
+
+  this.entry.setDouble(ang);
+    // entry.setDouble(ang);
+  }
+
+  public void Close(){
+    if (ang <= 180){
+      ang = ang + 2;
+      //System.out.println(ang + "\n");
+    }
+  }
+
+  double ang2 = 180;
+
+  public void ArmUp(){
+    if(ang2 >= 30){
+      ang2 = ang2 - 5;
+    }
+    //close state is 180, when do open, we decrease the number  
+    //open state is 30, when do close, we increase the number 
+  }
+
+  public void ArmDown(){
+    if(ang2 <= 180){
+      ang2 = ang2 + 5;
+    }
+    //close state is 180, when do open, we decrease the number  
+    //open state is 30, when do close, we increase the number 
+  }
+
+>>>>>>> parent of ca08ec3 (arm and grabber working)
   private void configureButtonBindings() {
     // Default command is arcade drive. This will run unless another command
     // is scheduled over it.
@@ -67,6 +112,37 @@ public class RobotContainer {
     onboardButtonA
         .onTrue(new PrintCommand("Button A Pressed"))
         .onFalse(new PrintCommand("Button A Released"));
+<<<<<<< HEAD
+=======
+
+    //grabber
+    //swevo 1
+    ShuffleboardTab tab = Shuffleboard.getTab("graber1");
+    GenericEntry entry = tab.add("graber1", ang).getEntry();
+    this.entry = entry; 
+    JoystickButton joystickAButton = new JoystickButton(m_controller, m_arm.A);
+      joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> Open())));
+      joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> m_arm.setAngle(ang), m_arm)));
+      // joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> System.out.println(ang))));
+
+
+    JoystickButton joystickXButton = new JoystickButton(m_controller, m_arm.X);
+      joystickXButton.whileTrue(new RepeatCommand(new InstantCommand(() -> Close())));
+      joystickXButton.whileTrue(new RepeatCommand(new InstantCommand(() -> m_arm.setAngle(ang), m_arm)));
+
+    //grab
+    //swevo 2
+    //ShuffleboardTab tab2 = Shuffleboard.getTab("arm");
+    //GenericEntry entry2 = tab.add("arm", ang).getEntry();
+    //this.entry = entry2;
+    JoystickButton joystickYButton = new JoystickButton(m_controller, m_arm.B);
+      joystickYButton.whileTrue(new RepeatCommand(new InstantCommand(() -> ArmUp())));
+      joystickYButton.whileTrue(new RepeatCommand(new InstantCommand(() -> m_arm.setAngle2(ang2), m_arm)));
+
+    JoystickButton joystickBButton = new JoystickButton(m_controller, m_arm.Y);
+      joystickBButton.whileTrue(new RepeatCommand(new InstantCommand(() -> ArmDown())));
+      joystickBButton.whileTrue(new RepeatCommand(new InstantCommand(() -> m_arm.setAngle2(ang2), m_arm)));
+>>>>>>> parent of ca08ec3 (arm and grabber working)
   }
 
   /**
