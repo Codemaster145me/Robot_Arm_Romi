@@ -23,7 +23,7 @@ public final class Constants {
 
     public static int Driverport = 0;
 
-    public static int TiltPort = 3;
+    public static int TiltPort = 3; //The port of the Tilt Servo is A4
     public static int ArmPort = 2;
     public static int GrabPort = 4;
 

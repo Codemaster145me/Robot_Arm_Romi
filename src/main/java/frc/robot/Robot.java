@@ -8,14 +8,15 @@ import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.commands.ArmUp;
-import frc.robot.commands.ArmDown;
+import frc.robot.commands.TiltUp;
+import frc.robot.commands.TiltDown;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -27,8 +28,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
   private final ArmSubsystem m_arm = new ArmSubsystem();
-  private final ArmUp armup = new ArmUp();
-  private final ArmDown armdown = new ArmDown();
+  private final TiltUp TiltUp = new TiltUp();
+  private final TiltDown TiltDown = new TiltDown();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -79,7 +80,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {}
-
+  /* 
   double ang = 180;
   double ang2 = 180;
   double ang3 = 100;
@@ -125,7 +126,7 @@ public class Robot extends TimedRobot {
     if(ang3 <= 180){
       ang3 = ang3 + 2;
     }
-  }
+  }*/
 
   @Override
   public void teleopInit() {
@@ -145,13 +146,12 @@ public class Robot extends TimedRobot {
     this.entry = entry; */
 
     JoystickButton joystickAButton = new JoystickButton(RobotContainer.m_controller, Constants.A);
-      joystickAButton.whileTrue(armup); // ??
-      //joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> 
-      //Shuffleboard.getTab("Arm").add("Sendable Title", ang))));
-      // joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> System.out.println(ang))));
-
+      joystickAButton.whileTrue(TiltUp); 
+      joystickAButton.whileTrue(new RepeatCommand(new InstantCommand(() -> 
+      Shuffleboard.getTab("Arm").add("Sendable Title", Constants.ArmAngle))));
+      
     JoystickButton joystickXButton = new JoystickButton(RobotContainer.m_controller, Constants.X);
-      joystickXButton.whileTrue(armdown);
+      joystickXButton.whileTrue(TiltDown);
       //joystickXButton.whileTrue(new RepeatCommand(new InstantCommand(() -> m_arm.setAngle(ang), m_arm)));
 
     //grab
